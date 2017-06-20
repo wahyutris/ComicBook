@@ -1,0 +1,62 @@
+﻿@model ComicBook.Models.ComicBook
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.showBack = true;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @*OLD VERSION*@
+        @*<h1>@Model.Title</h1>
+        <h2>Issue: #@Model.IssueNumber</h2>
+
+        <h5>Description:</h5>
+        <div>@Html.Raw(Model.Description)</div>
+
+        <h5>Artist:</h5>
+        <h5>@foreach (var a in Model.Artists)
+        {
+            <ul>
+                <li>@a.Role : @a.Name;</li>
+            </ul>            
+        }
+        </h5>*@
+
+
+        @*NEW VERSION*@
+        <h2>@Model.Title #@Model.IssueNumber</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="well">
+                    <h5><label>Series Title:</label> @Model.Title</h5>
+                    <h5><label>Issue #:</label> @Model.IssueNumber</h5>
+                    <h5><label>Favorite:</label> Yes</h5>
+                    <h5>Artists:</h5>
+                    <div>                        
+                        <ul>
+                            @foreach (var a in Model.Artists)
+                            {
+                               <li>@a.Role : @a.Name;</li>
+                            }
+                        </ul>                        
+                    </div>
+                </div>
+                <h5>Description</h5>
+                @Html.Raw(Model.Description)
+            </div>
+            <div class="col-md-6">
+                <img src="/Images/@Model.CoverImageFileName" alt="@Model.DisplayText" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

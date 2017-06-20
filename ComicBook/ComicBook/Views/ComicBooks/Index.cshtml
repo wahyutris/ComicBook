@@ -1,0 +1,24 @@
+﻿@*m harus kecil, supaya muncul intelisense dari semua pemanggilan class, method di model*@
+@model ComicBook.Models.ComicBook[]
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    @foreach (var comic in Model)
+    {
+        <div class="col-md-3">
+            <a href="@Url.Action("Detail", new { id = comic.Id })">
+                <h4>@comic.DisplayText</h4>
+                @*<h4>@Html.ActionLink(comic.DisplayText, "Detail", new { id = comic.Id })</h4>*@
+                <img src="/Images/@comic.CoverImageFileName"
+                     alt="@comic.DisplayText"
+                     class="img-responsive" />
+            </a>
+        </div>
+    }
+    
+</div>
